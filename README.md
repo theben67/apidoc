@@ -47,7 +47,7 @@ Example tree:
     - logo.png
 ```
 
-**Note**: You can find the complete source directory example [here](https://www.google.com)
+**Note**: You can find the complete source directory example [here](https://github.com/theben67/apidoc/tree/master/examples/apidoc_v2.1)
 
 **Note**: You can change all UI style as you want, just update .css files
 
