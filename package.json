@@ -1,0 +1,18 @@
+{
+  "name": "@bentaro/apidoc",
+  "version": "1.0.3",
+  "description": "Create basic and fully customisable documentation for your API REFERENCES",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js --name=\"API REFERENCES\" --version=\"2.1\" --out=\"./build\" --src=\"./examples/apidoc_v2.1\""
+  },
+  "author": "HOEFFLER Benjamin",
+  "license": "ISC",
+  "dependencies": {
+    "ncp": "^2.0.0",
+    "showdown": "^1.9.1"
+  },
+  "devDependencies": {
+    "minimist": "^1.2.5"
+  }
+}
