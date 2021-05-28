@@ -53,4 +53,4 @@ Example tree:
 
 Become:
 
-![](https://github.com/theben67/apidoc/examples/screenshot.png)
+![](https://raw.githubusercontent.com/theben67/apidoc/master/examples/screenshot.png)
