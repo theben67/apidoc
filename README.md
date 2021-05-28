@@ -3,7 +3,7 @@ Create basic and fully customisable documentation for your API REFERENCES from m
 ### Command line usage
 
 ```
-npm run @bentaro/apidoc --name="API REFERENCES" --version="2.1" --out="build" --src="./examples/apidoc_v2.1"
+npx @bentaro/apidoc --name="API REFERENCES" --version="2.1" --out="build" --src="./examples/apidoc_v2.1"
 ```
 
 #### Command line parameters
@@ -17,7 +17,12 @@ npm run @bentaro/apidoc --name="API REFERENCES" --version="2.1" --out="build" --
 
 ### Javascript usage
 
-Coming soon...
+```
+const Apidoc = require("@bentaro/apidoc");
+
+let api = new Apidoc(name, version, src, out);
+api.generate(); // generate is an async function
+```
 
 ### How it work
 

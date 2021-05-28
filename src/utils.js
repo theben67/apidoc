@@ -33,6 +33,7 @@ module.exports = {
     }
   },
   getUrl(folder){
+    if(folder.split(path.sep).length == 1 && folder.split(path.sep)[0].length <= 0) return "";
     return folder.split(path.sep).map(x => "../").join("");
   },
   getTitle(folder){
