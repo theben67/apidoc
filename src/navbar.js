@@ -1,10 +1,10 @@
-module.exports = function (ressources){
+module.exports = function (ressources, root_files){
   return `
     <div class="navbarContainer">
-        <a href="{{{url}}}Overview/index.html"> Overview </a>
-        <a href="{{{url}}}Quickstart/index.html"> Quickstart </a>
-        <a href="{{{url}}}How-to_guides/index.html"> How-to guides </a>
-        <a href="{{{url}}}/index.html"><img src="{{{url}}}logo.png" /></a>
+        ${root_files.map(x => `
+            <a href="{{{url}}}${x.toLowerCase()}/index.html"> ${x.split("_").join(" ")} </a>
+          `).join("")}
+        <a href="{{{url}}}index.html"><img src="{{{url}}}logo.png" /></a>
     </div>
   `;
 }

@@ -2,16 +2,16 @@ Creates a resource token for a user. This token allows a user to use API resques
 
 **Note**: The created token expires after 2 hours of non-use
 
-###Request:
+### Request:
 <div class="requestContainer"> <div class="requestPost">POST</div> <div class="requestUrl">/api/v2.1/tokens</div> </div>
 
-###Body:
+### Body:
 | Property | Type   | Required | Default |  Description  |
 | -------- | ------ | -------- | ------- | ------------- |
 | login    | string |   yes    |   n/a   |   Username    |
 | password | string |   yes    |   n/a   | User password |
 
-###Responses:
+### Responses:
 
 <span class="success">**200**</span> - Successfull response
 

@@ -7,8 +7,11 @@ html, body { margin: 0 auto!important; min-height: 100%!important; font-family: 
 
 .requestContainer { padding: 5px 10px; background-color: rgba(0, 128, 195, .05); border-radius: 5px}
 .requestUrl { display: inline-block }
-.requestPost { color: white; width: fit-content; font-weight: bold; padding: 5px; border-radius: 5px; display: inline-block; margin-right: 10px;font-size: 12px; }
+.requestPost, .requestGet, .requestDelete, .requestPut { color: white; width: fit-content; font-weight: bold; padding: 5px; border-radius: 5px; display: inline-block; margin-right: 10px;font-size: 12px; }
 .requestPost { background-color: green; }
+.requestGet { background-color: blue; }
+.requestDelete { background-color: red; }
+.requestPut { background-color: orange; }
 
 .success { color: green }
 .error { color: red }

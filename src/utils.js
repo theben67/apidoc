@@ -4,8 +4,7 @@ const fs = require("fs"),
 module.exports = {
   async getRessources(folder){
     try {
-      let result = [];
-      let files = await fs.promises.readdir(folder);
+      let result = [], files = await fs.promises.readdir(folder);
       for(let i = 0; i < files.length; i++){
         let isDirectory = await fs.statSync(path.join(folder,files[i])).isDirectory()
         if(!isDirectory) continue;
@@ -28,22 +27,21 @@ module.exports = {
       }
       return result;
     } catch(err) {
-      console.error(err);
-      process.exit();
+      throw new Error(err)
     }
   },
   getUrl(folder){
     if(folder.split(path.sep).length == 1 && folder.split(path.sep)[0].length <= 0) return "";
     return folder.split(path.sep).map(x => "../").join("");
   },
-  getTitle(folder){
-    return folder.split(path.sep).filter((x,i) => i > folder.split(path.sep).length - 3).map(x => x.charAt(0).toUpperCase() + x.slice(1) ).join(" > ").split("_").join(" ");
+  getTitle(folder, separator){
+    return folder.split(path.sep).filter((x,i) => i > folder.split(path.sep).length - 3).map(x => x.charAt(0).toUpperCase() + x.slice(1) ).join(" " + separator + " ").split("_").join(" ");
   },
-  getBreadcrumbs(folder){
+  getBreadcrumbs(folder, separator){
     return folder.split(path.sep).map((x, i) => {
       return `
         ${i == folder.split(path.sep).length -1 ? `<span>` + x.charAt(0).toUpperCase() + x.slice(1) + `</span>` : `<a href="{{{url}}}${folder.split(path.sep).filter((y,i2) => i2 <= i).join("/")}/index.html">` + x.charAt(0).toUpperCase() + x.slice(1) + `</a>`}
       `;
-    }).join(" > ").split("_").join(" ");
+    }).join(" " + separator + " ").split("_").join(" ");
   }
 }

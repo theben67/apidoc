@@ -1,10 +1,10 @@
 {
   "name": "@bentaro/apidoc",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Create basic and fully customisable documentation for your API REFERENCES",
   "main": "src/index.js",
   "scripts": {
-    "demo": "node src/index.js --name=\"API REFERENCES\" --version=\"2.1\" --out=\"./build\" --src=\"./examples/apidoc_v2.1\""
+    "demo": "node src/cli.js --name=\"API REFERENCES\" --version=\"2.1\" --out=\"./build\" --src=\"./examples/apidoc_v2.1\" --titleSeparator=\"-\" --homeTitle=\"My website\""
   },
   "author": "HOEFFLER Benjamin",
   "license": "ISC",
@@ -19,5 +19,9 @@
     "api references",
     "markdown"
   ],
-  "bin": "./src/cli.js"
+  "bin": "./src/cli.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/theben67/apidoc"
+  }
 }
