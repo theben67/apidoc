@@ -1,6 +1,6 @@
 {
   "name": "@bentaro/apidoc",
-  "version": "1.0.7",
+  "version": "1.0.9",
   "description": "Create basic and fully customisable documentation for your API REFERENCES",
   "main": "src/index.js",
   "scripts": {

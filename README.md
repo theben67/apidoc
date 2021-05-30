@@ -3,13 +3,13 @@ Create basic and fully customisable documentation for your API REFERENCES from m
 ### Command line usage
 
 ```
-npx @bentaro/apidoc --name="API REFERENCES" --version="2.1" --out="build" --src="./examples/apidoc_v2.1" --separator="-" --homeTitle="My home page"
+npx @bentaro/apidoc --name='"API REFERENCES"' --version="2.1" --out="build" --src="./examples/apidoc_v2.1" --separator="-" --homeTitle="My home page"
 ```
 
 #### Command line parameters
 
-|   Name   |  Required |      Default      |          Description          |
-| -------- | --------- | ----------------- | ----------------------------- |
+|   Name    |  Required |      Default      |               Description               |
+| --------- | --------- | ----------------- | --------------------------------------- |
 |   name    |    no     |   Documentation   |        Name of your documentation       |
 |  version  |    no     |        1.0        |      Version of your documentation      |
 |    out    |    no     |       build       |              Output folder              |
