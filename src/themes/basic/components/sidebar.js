@@ -1,13 +1,8 @@
-module.exports = function (ressources, options){
-  if(!options) options = {};
-  options = {
-    name: options.name ?? 'Documentation',
-    version: options.version ?? '1.0'
-  };
+module.exports = function (datas){
   return `
     <div class="sidebarContainer">
       <div class="sidebarTitleContainer">
-        <span class="sidebarTitle">${options.name}</span> <span class="sidebarVersion">v${options.version}</span>
+        <span class="sidebarTitle">${datas.name}</span> <span class="sidebarVersion">v${datas.version}</span>
       </div>
       <div class="sidebarInputContainer">
         <input class="sidebarInput" id="SidebarSearch" oninput="search()" placeholder="Filter..." />
@@ -15,7 +10,7 @@ module.exports = function (ressources, options){
       <hr/>
       <div class="sidebarUlsContainer">
         <ul class="sidebarRessourceUl">
-          ${ressources.map(x => {
+          ${datas.ressources.map(x => {
             return `
               <li data-name="${x.name}" class="sidebarRessource">
                 <div class="sidebarLi"> <div class="collapsible" data-from="${x.name}" data-type="ressource"></div> <a href="{{{url}}}${x.name.toLowerCase()+"/index.html"}"> ${x.name} </a> </div>

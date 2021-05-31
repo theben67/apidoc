@@ -3,7 +3,7 @@ Creates a resource token for a user. This token allows a user to use API resques
 **Note**: The created token expires after 2 hours of non-use
 
 ### Request:
-<div class="requestContainer"> <div class="requestPost">POST</div> <div class="requestUrl">/api/v2.1/tokens</div> </div>
+{{{request("POST", "/api/v2.1/tokens")}}}
 
 ### Body:
 | Property | Type   | Required | Default |  Description  |
@@ -13,7 +13,7 @@ Creates a resource token for a user. This token allows a user to use API resques
 
 ### Responses:
 
-<span class="success">**200**</span> - Successfull response
+{{{status(200)}}} - Successfull response
 
 Type: Object
 
@@ -23,8 +23,9 @@ Type: Object
 
 ***
 
-<span class="error">**401**</span> - Login or password incorrect
+{{{status(401)}}} - Login or password incorrect
 
 Type: string
 
 Value: "401 - AUTHENTICATION FAILED : login or password incorrect"
+{{{url}}}

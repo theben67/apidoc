@@ -28,7 +28,7 @@ api.generate(); // generate is an async function
 
 ### How it work
 
-Apidoc convert a specific folder tree of .md files into a basic and fully customisable website. Apidoc need some static files (css & png)
+Apidoc convert a specific folder tree of .md files into a basic and fully customisable website. Another "static" folder is needed to let you load your own style
 
 Example tree:
 
@@ -58,14 +58,21 @@ Become:
 
 ![](https://raw.githubusercontent.com/theben67/apidoc/master/examples/screenshot.png)
 
-**Note**: You can find the complete source directory example [here](https://github.com/theben67/apidoc/tree/master/examples/apidoc_v2.1)
+**Note**: You can find the complete source directory example [here](https://github.com/theben67/apidoc/tree/master/examples/demo)
 
 **Note**: You can change all UI style as you want, just update .css files (color, font-size etc...)
 
-#### To know
+**Important**: In this example we only have the "Users" resource with the "Authentication" category and the "createToken" request. But you can create multiple resources. And each resource can have multiple categories. And a category can have multiple requests.
 
-- In this example we only have the "Users" resource with the "Authentication" category and the "createToken" request. But you can create multiple resources. And each resource can have multiple categories. And a category can have multiple requests.
+### Markdown shortcuts
 
-- Navbar links are customisable. In our example we have "How-to guides", "Overview" and "Quickstart". But you can remove a .md file to remove his button in the navbar or rename it to change his name. Do what you want, the only rule is in the filename **the character underscore (_) is replaced by a space** in the navbar
+|             Name             |                                                                                   Display                                                                               |
+| :--------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|            {{{url}}}         |                                   Path to the root folder. Use case: href="{{{url}}}/index.html" is redirecting to the home page                                        |
+|           {{{title}}}        |                                                                              Current page title                                                                         |
+| {{{request($method, $url)}}} | Shortcut to the html ```<div class="requestContainer"><div class="${$method.toLowerCase()}">${method.toUpperCase()}</div><div class="requestUrl">${url}</div> </div>``` |
+| {{{status($method, $url)}}}  |                          Shortcut to the html ```<span class="${code >= 400 ? "error" : "success"}" style="font-weight: bold">${code}</span>```                         |
 
-- In .md files ```{{{url}}}``` is replaced by the current project root path
+### How to customize the navbar links
+
+Navbar links are customisable. In our example we have "How-to guides", "Overview" and "Quickstart". But you can remove a .md file to remove his button in the navbar or rename it to change his name. Do what you want, the only rule is in the filename **the character underscore (_) is replaced by a space** in the navbar

@@ -2,7 +2,7 @@ const fs = require("fs"),
   path = require("path");
 
 module.exports = {
-  async getRessources(folder){
+  async readMdSources(folder){
     try {
       let result = [], files = await fs.promises.readdir(folder);
       for(let i = 0; i < files.length; i++){
@@ -30,18 +30,28 @@ module.exports = {
       throw new Error(err)
     }
   },
-  getUrl(folder){
-    if(folder.split(path.sep).length == 1 && folder.split(path.sep)[0].length <= 0) return "";
-    return folder.split(path.sep).map(x => "../").join("");
+  async getJSModules(folder){
+    try {
+      let result = [], files = await fs.promises.readdir(folder);
+      for(let i = 0; i < files.length; i++){
+        let component = {
+          name: files[i].split(".js").join(""),
+          filename: files[i],
+          path: path.join(folder, files[i]),
+          exec: require(path.join(folder, files[i]))
+        };
+        result.push(component);
+      }
+      return result;
+    } catch(err) {
+      throw new Error(err)
+    }
   },
-  getTitle(folder, separator){
-    return folder.split(path.sep).filter((x,i) => i > folder.split(path.sep).length - 3).map(x => x.charAt(0).toUpperCase() + x.slice(1) ).join(" " + separator + " ").split("_").join(" ");
-  },
-  getBreadcrumbs(folder, separator){
-    return folder.split(path.sep).map((x, i) => {
-      return `
-        ${i == folder.split(path.sep).length -1 ? `<span>` + x.charAt(0).toUpperCase() + x.slice(1) + `</span>` : `<a href="{{{url}}}${folder.split(path.sep).filter((y,i2) => i2 <= i).join("/")}/index.html">` + x.charAt(0).toUpperCase() + x.slice(1) + `</a>`}
-      `;
-    }).join(" " + separator + " ").split("_").join(" ");
+  parseHmlDynamicDatas(html, datas, datasParams, methods){
+    for(let data of datas) html = html.replace(new RegExp(`{{{${data.name}}}}`, "gi"), data.exec(datasParams));
+    for(let method of methods) html = html.replace(new RegExp(`{{{${method.name}\((.*)\)}}}`, "gi"), function(match, contents, offset, input_string){
+        return eval("method.exec" + contents);
+    });
+    return html;
   }
 }

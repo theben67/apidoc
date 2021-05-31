@@ -1,11 +1,11 @@
-module.exports = function (html){
+module.exports = function (){
   return `
     <div class="pageContainer">
       <div class="pageBreadcrumbs">
         {{{breadcrumbs}}}
       </div>
       <div class="pageMarkdown">
-        ${html}
+        {{{pageHtml}}}
       </div>
     </div>
     <script>
