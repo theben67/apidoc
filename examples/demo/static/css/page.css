@@ -10,7 +10,7 @@
 
 .pageContainer a { color: rgba(0, 128, 195, 1); text-decoration: inherit; font-weight: 500 }
 
-.pageContainer a:hover{ text-decoration:underline!important; }
+.pageContainer a:hover{ text-decoration:underline; }
 
 /** TABLES */
 
@@ -20,4 +20,4 @@
 
 .pageMarkdown table td { padding: 10px }
 
-.pageMarkdown table th { text-align: left!important; padding: 10px }
+.pageMarkdown table th { text-align: left; padding: 10px }

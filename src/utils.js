@@ -2,6 +2,11 @@ const fs = require("fs"),
   path = require("path");
 
 module.exports = {
+  /**
+  * List the "markdown/" folder
+  * @param {string} folder - Source
+  * @return {object[]}
+  */
   async readMdSources(folder){
     try {
       let result = [], files = await fs.promises.readdir(folder);
@@ -30,6 +35,11 @@ module.exports = {
       throw new Error(err)
     }
   },
+  /**
+  * Get all module .js file from a given directory
+  * @param {string} folder - Source
+  * @return {object[]}
+  */
   async getJSModules(folder){
     try {
       let result = [], files = await fs.promises.readdir(folder);
@@ -47,6 +57,14 @@ module.exports = {
       throw new Error(err)
     }
   },
+  /**
+  * Replace in a string all methods & datas shortcut
+  * @param {string} html - String to update
+  * @param {object[]} datas - Datas to parse in the html string
+  * @param {string} datasParams - Default params used in datas functions
+  * @param {string} methods - Methods to parse in the html string
+  * @return {string} Parsed string
+  */
   parseHmlDynamicDatas(html, datas, datasParams, methods){
     for(let data of datas) html = html.replace(new RegExp(`{{{${data.name}}}}`, "gi"), data.exec(datasParams));
     for(let method of methods) html = html.replace(new RegExp(`{{{${method.name}\((.*)\)}}}`, "gi"), function(match, contents, offset, input_string){

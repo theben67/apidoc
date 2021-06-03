@@ -18,6 +18,8 @@
 
 .sidebarRessourceUl, .sidebarCategoryUl, .sidebarRouteUl { list-style-type: none; margin: 0; padding: 0; }
 
+.sidebarRessourceUl {}
+
 .sidebarCategoryUl { padding: 0 0 0 20px; }
 
 .sidebarRouteUl { padding: 0 0 0 30px; }

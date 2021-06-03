@@ -10,6 +10,7 @@ class Apidoc {
     this.name = name, this.version = version, this.src = src, this.out = out, this.homeTitle = homeTitle ?? "Home", this.separator = separator ?? ">", this.theme = "basic", this.outputDir = path.join(out, version);
   }
 
+  /** Function which is generating the static files */
   async generate(){
     try {
       /** Remove outputDir if exist and create a new */
@@ -32,6 +33,11 @@ class Apidoc {
     }
   }
 
+  /**
+  * Create an HTML file from a markdown file
+  * @param {string} mdPath - Path to the markdown file
+  * @param {string} out - Output for the created HTML file
+  */
   async createHtmlFile(mdPath, out){
     try {
       let ressourceMd = await fs.promises.readFile(mdPath,'utf8');
@@ -48,13 +54,14 @@ class Apidoc {
         path_sep: path.sep,
         folder: out,
         mdParsed: converter.makeHtml(ressourceMd)
-      }, this.methods));
+      }, this.methods.concat(this.custom_methods)));
       return "ok";
     } catch(err){
       throw new Error(err);
     }
   }
 
+  /** For each .md file in the markdown/ source create an HTML file  */
   async createPagesFromMd(){
     try {
       for(let ressource of this.ressources){
@@ -78,6 +85,7 @@ class Apidoc {
     }
   }
 
+  /** Create the default HTML template used in every HTML page */
   async createDefaultHTML(){
     try {
       this.indexHtml = await fs.promises.readFile(path.join(__dirname, "themes", this.theme, "index.html"),'utf8');
@@ -110,6 +118,8 @@ class Apidoc {
       this.components = await utils.getJSModules(path.join(__dirname, "themes", this.theme, "components"));
       this.datas = await utils.getJSModules(path.join(__dirname, "themes", this.theme, "datas"));
       this.methods = await utils.getJSModules(path.join(__dirname, "themes", this.theme, "methods"));
+      this.custom_methods = [];
+      if(fs.existsSync(path.join(this.src, "shortcuts"))) this.custom_methods = await utils.getJSModules(path.resolve(path.join(this.src, "shortcuts")));
       return "ok";
     } catch (err) {
       throw new Error(err);

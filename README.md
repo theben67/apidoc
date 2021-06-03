@@ -73,6 +73,30 @@ Become:
 | {{{request($method, $url)}}} | Shortcut to the html ```<div class="requestContainer"><div class="${$method.toLowerCase()}">${method.toUpperCase()}</div><div class="requestUrl">${url}</div> </div>``` |
 | {{{status($method, $url)}}}  |                          Shortcut to the html ```<span class="${code >= 400 ? "error" : "success"}" style="font-weight: bold">${code}</span>```                         |
 
+### How to create my own markdown shortcuts
+
+In your source folder create a folder called "shortcuts". Then create a JS file in the folder "shortcuts" for each of your shortcut. In our example it look like:
+
+```
+- demo_doc/
+  - shortcuts/
+    - multiply.js
+```
+
+multiply.js content:
+```
+module.exports = function (...args){
+  return args.reduce((acc, val) => acc * val);
+}
+```
+
+Usage in markdown:
+
+```
+### My amazing markdown file
+4 * 2 * 5 = {{{multiply(4,2,5)}}}
+```
+
 ### How to customize the navbar links
 
 Navbar links are customisable. In our example we have "How-to guides", "Overview" and "Quickstart". But you can remove a .md file to remove his button in the navbar or rename it to change his name. Do what you want, the only rule is in the filename **the character underscore (_) is replaced by a space** in the navbar
