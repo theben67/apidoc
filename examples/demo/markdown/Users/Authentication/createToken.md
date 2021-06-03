@@ -28,4 +28,3 @@ Type: Object
 Type: string
 
 Value: "401 - AUTHENTICATION FAILED : login or password incorrect"
-{{{url}}}
