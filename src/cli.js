@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 const Apidoc = require("./index.js");
-let argv = require('minimist')(process.argv.slice(2));
+let argv = JSONParseArgvs(process.argv.slice(2));
 
 argv.version = argv.version ? String(argv.version) : "1.0";
 argv.name = argv.name ? String(argv.name) : "Documentation";
@@ -15,3 +15,10 @@ if(!argv.src) throw new Error("The parameter 'src' is required");
     throw new Error(err);
   }
 })()
+
+function JSONParseArgvs(argvs){
+  return argvs.reduce((acc, val) => {
+    acc[val.split("=")[0].split("--").join("")] = val.split('=')[1];
+    return acc;
+  }, {});
+}
