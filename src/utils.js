@@ -12,7 +12,7 @@ module.exports = {
       let result = [], files = await fs.promises.readdir(folder);
       for(let i = 0; i < files.length; i++){
         let isDirectory = await fs.statSync(path.join(folder,files[i])).isDirectory()
-        if(!isDirectory) continue;
+        if(!isDirectory || files[i][0] == "$") continue;
         let ressource = {
           name: files[i],
           path: path.join(folder, files[i])
@@ -71,5 +71,14 @@ module.exports = {
         return eval("method.exec" + contents);
     });
     return html;
+  },
+
+  async getFiles(dir) {
+    const subdirs = await fs.promises.readdir(dir);
+    const files = await Promise.all(subdirs.map(async (subdir) => {
+      const res = path.join(dir, subdir);
+      return (await fs.statSync(res)).isDirectory() ? this.getFiles(res) : res;
+    }));
+    return files.reduce((a, f) => a.concat(f), []);
   }
 }

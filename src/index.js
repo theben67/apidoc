@@ -25,6 +25,7 @@ class Apidoc {
 
       await this.createDefaultHTML();
       await this.createPagesFromMd();
+      await this.createPagesFromHiddenMd();
 
       return "ok";
     } catch(err) {
@@ -78,6 +79,22 @@ class Apidoc {
         if(isDirectory) continue;
         if(file == "main.md") await this.createHtmlFile(path.join(this.src, "markdown", "main.md"), "");
         else await this.createHtmlFile(path.join(this.src, "markdown", file), file.split(".md").join(""));
+      }
+      return "ok";
+    } catch(err){
+      throw new Error(err);
+    }
+  }
+
+  /** For each .md file in the markdown/$hidden/* source create an HTML file  */
+  async createPagesFromHiddenMd(){
+    try {
+      let dir = path.join(this.src,"markdown","$hidden");
+      let mdFiles = await utils.getFiles(dir);
+      mdFiles = mdFiles.map(x => x.split(dir).join("").split(path.sep).filter(y => y.length > 0).join(path.sep));
+      for(let file of mdFiles){
+        if(file.match(new RegExp("main.md$"))) await this.createHtmlFile(path.join(dir, file), path.join(file.split("main.md").join("").split(path.sep).join("")));
+        else await this.createHtmlFile(path.join(dir, file), path.join(file.split(".md").join("")));
       }
       return "ok";
     } catch(err){
