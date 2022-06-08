@@ -13,17 +13,17 @@ module.exports = function (datas){
           ${datas.ressources.map(x => {
             return `
               <li data-name="${x.name}" class="sidebarRessource">
-                <div class="sidebarLi"> <div class="collapsible" data-from="${x.name}" data-type="ressource"></div> <a href="{{{url}}}${x.name.toLowerCase()+"/index.html"}"> ${x.name} </a> </div>
+                <div class="sidebarLi"> <div class="collapsible" data-from="${x.name}" data-type="ressource"></div> <a href="{{{url}}}${x.name.toLowerCase()}"> ${x.name} </a> </div>
                 <ul class="sidebarCategoryUl content">
                   ${x.categories.map(y => {
                     return `
                       <li data-name="${y.name}" class="sidebarCategory">
-                        <div class="sidebarLi"> <div class="collapsible" data-from="${y.name}" data-type="category"></div> <a href="{{{url}}}${x.name.toLowerCase()+"/"+y.name.toLowerCase()+"/index.html"}">${y.name}</a> </div>
+                        <div class="sidebarLi"> <div class="collapsible" data-from="${y.name}" data-type="category"></div> <a href="{{{url}}}${x.name.toLowerCase()+"/"+y.name.toLowerCase()}">${y.name}</a> </div>
                         <ul class="sidebarRouteUl content">
                           ${y.requests.map(z =>
                             `
                               <li data-name="${z.split('.md').join('')}" class="sidebarRoute">
-                                <div class="sidebarLi"> <a href="{{{url}}}${x.name.toLowerCase()+"/"+y.name.toLowerCase()+"/"+z.split(".md").join("").toLowerCase()+"/index.html"}">${z.split('.md').join('')}</a> </div>
+                                <div class="sidebarLi"> <a href="{{{url}}}${x.name.toLowerCase()+"/"+y.name.toLowerCase()+"/"+z.split(".md").join("").toLowerCase()}">${z.split('.md').join('')}</a> </div>
                               </li>
                             `).join("")}
                         </ul>
